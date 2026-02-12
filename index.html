@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Be My Valentine</title>
+<link rel="stylesheet" href="css/valentine.css" />
+</head>
+
+<body>
+
+<div id="heartsContainer"></div>
+
+<div id="valentineQuestion">
+  <b>Will you be my valentine?</b>
+</div>
+
+<div id="bubbleContainer"></div>
+
+<div class="buttonContainer">
+  <button class="answerButton yesButton" onclick="location.href='where.html'">
+    Yes 💖
+  </button>
+
+  <button class="answerButton" id="noButton">
+    No :b
+  </button>
+</div>
+
+<img src="cat.gif" alt="cat asking question" />
+
+<script>
+const reactions = [
+  "aww :<<",
+  "are you sure?",
+  "really??",
+  "why? :<<",
+  "please? 🥺",
+  "okay this hurts...",
+  "ouch :<"
+];
+
+let clickCount = 0;
+
+document.getElementById("noButton").addEventListener("click", function () {
+  const yesButton = document.querySelector(".yesButton");
+  const container = document.getElementById("bubbleContainer");
+
+  const currentFontSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+  yesButton.style.fontSize = (currentFontSize + 4) + "px";
+
+  const noButton = document.getElementById("noButton");
+  noButton.style.fontSize = window.getComputedStyle(noButton).fontSize;
+
+  const bubble = document.createElement("div");
+  bubble.className = "reactionBubble";
+
+  if (clickCount < reactions.length) {
+    bubble.textContent = reactions[clickCount];
+    clickCount++;
+  } else {
+    bubble.textContent = reactions[reactions.length - 1];
+  }
+
+  container.appendChild(bubble);
+
+  setTimeout(() => {
+    bubble.remove();
+  }, 2500);
+});
+
+const heartsContainer = document.getElementById("heartsContainer");
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = "💖"; 
+  
+  heart.style.left = Math.random() * 100 + "vw";
+  
+  const size = 10 + Math.random() * 20
+  heart.style.fontSize = size + "px";
+  
+  const duration = 4 + Math.random() * 3
+  heart.style.animationDuration = duration + "s";
+  
+  heartsContainer.appendChild(heart);
+  
+  setTimeout(() => {
+    heart.remove();
+  }, duration * 1000);
+}
+setInterval(createHeart, 300);
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Special Memory 💖</title>
+<link rel="stylesheet" href="css/end.css" />
+</head>
+
+<body>
+
+<div id="heartsContainer"></div>
+
+<div class="wrapper">
+
+  <div class="mainLayout">
+
+    <!-- LEFT MEMORY COLUMN -->
+    <div class="memoryColumn">
+      <div class="memoryTrack">
+        <img src="img/date1.jpg">
+        <img src="img/date2.jpg">
+        <img src="img/date3.jpg">
+        <img src="img/date4.jpeg">
+
+        <!-- duplicate for infinite loop -->
+        <img src="img/date1.jpg">
+        <img src="img/date2.jpg">
+        <img src="img/date3.jpg">
+        <img src="img/date4.jpeg">
+      </div>
+
+      <!-- CAT BOUQUET IMAGE ON THE SIDE -->
+      <img src="img/catbouquet.png" class="catBouquet">
+    </div>
+
+    <!-- RIGHT MESSAGE -->
+    <div class="endContainer">
+      <div class="endTitle">
+        You remembered 💖
+      </div>
+      <div class="endText">
+        If you could see yourself through my eyes, you would understand just how deeply 
+        I love and admire your beauty, so much so that I proudly show the world my love for you and 
+        the beauty of your presence. you're as bright as the sunrise and pretty as the sunset 
+        <br><br> 
+        With no requisites, nor deadlines, I will always love you, 
+        My Love 
+        <br><br> 
+        Happy Valentine's Day!!
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* Floating hearts */
+const heartsContainer = document.getElementById("heartsContainer");
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+
+  const heartEmojis = ["💖","❤️","💘","💞","💕"];
+  heart.textContent = heartEmojis[Math.floor(Math.random()*heartEmojis.length)];
+
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  heart.style.top = Math.random() * window.innerHeight + "px";
+  heart.style.setProperty("--x", (Math.random()-0.5)*200 + "px");
+  heart.style.setProperty("--y", (Math.random()-0.5)*200 + "px");
+  heart.style.fontSize = (12 + Math.random()*25) + "px";
+  heart.style.animationDuration = (5 + Math.random()*5) + "s";
+
+  heartsContainer.appendChild(heart);
+  setTimeout(() => heart.remove(), 8000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
